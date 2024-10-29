@@ -25,28 +25,28 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> findAll(){
         return employeeService.findAll();
     }
 
-    @GetMapping("/employee/{employeeId}")
+    @GetMapping("/employees/{employeeId}")
     public Employee findById(@PathVariable int employeeId){
         return employeeService.findById(employeeId);
     }
 
-    @PostMapping("/employee")
+    @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee){
         employee.setId(0);
         return employeeService.save(employee);
     }
 
-    @PutMapping("/employee")
+    @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee){
         return employeeService.save(employee);
     }
 
-    @DeleteMapping("/employee/{employeeId}")
+    @DeleteMapping("/employees/{employeeId}")
     public Employee deleteById(@PathVariable int employeeId){
         return employeeService.deleteById(employeeId);
     }

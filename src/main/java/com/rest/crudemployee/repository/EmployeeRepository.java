@@ -1,4 +1,4 @@
-package com.rest.crudemployee.dao;
+package com.rest.crudemployee.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
