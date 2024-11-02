@@ -2,6 +2,7 @@ package com.rest.crudemployee.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,32 +27,33 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees")
+    @PreAuthorize("hasRole('EMPLOYEE')")
     public List<Employee> findAll(){
         return employeeService.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
+    @PreAuthorize("hasRole('EMPLOYEE')")
     public Employee findById(@PathVariable int employeeId){
         return employeeService.findById(employeeId);
     }
 
     @PostMapping("/employees")
+    @PreAuthorize("hasRole('MANAGER')")
     public Employee addEmployee(@RequestBody Employee employee){
         employee.setId(0);
         return employeeService.save(employee);
     }
 
     @PutMapping("/employees")
+    @PreAuthorize("hasRole('MANAGER')")
     public Employee updateEmployee(@RequestBody Employee employee){
         return employeeService.save(employee);
     }
 
     @DeleteMapping("/employees/{employeeId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Employee deleteById(@PathVariable int employeeId){
         return employeeService.deleteById(employeeId);
     }
-
-
-
-
 }
